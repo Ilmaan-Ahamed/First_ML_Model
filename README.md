@@ -63,3 +63,49 @@ if not os.path.isdir('eth-80'):
 ```
 
 ---
+
+## 🖼️ Verify Dataset
+
+```python
+from PIL import Image
+from IPython.display import display
+
+im = Image.open('eth-80/train_set/dog/dog4/dog4-066-207.png')
+display(im)
+```
+
+---
+
+## ⚡ Model Configuration
+
+```python
+img_width, img_height = 128, 128
+epochs = 50
+batch_size = 32
+```
+
+---
+
+## 🧠 CNN Model Architecture
+
+```python
+model = tf.keras.Sequential()
+
+model.add(tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(128,128,3)))
+model.add(tf.keras.layers.MaxPool2D(2,2))
+
+model.add(tf.keras.layers.Conv2D(32, (3,3), activation='relu'))
+model.add(tf.keras.layers.MaxPool2D(2,2))
+
+model.add(tf.keras.layers.Conv2D(64, (3,3), activation='relu'))
+model.add(tf.keras.layers.MaxPool2D(2,2))
+
+model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dense(64, activation='relu'))
+
+model.add(tf.keras.layers.Dropout(0.5))
+
+model.add(tf.keras.layers.Dense(8, activation='softmax'))
+```
+
+---
