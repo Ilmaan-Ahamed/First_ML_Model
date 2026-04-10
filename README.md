@@ -201,3 +201,52 @@ print(np.argmax(prediction))
 
 ---
 
+## 📁 Project Structure
+
+```
+Deep-Learning-CNN/
+│
+├── eth-80/                         # Dataset (ignored in GitHub)
+│   ├── train_set/
+│   └── val_set/
+│
+├── logs/                           # TensorBoard logs
+│
+├── CNNs_With_keras.ipynb           # Main notebook
+├── eth-80.tar.gz                   # Dataset archive
+├── saved_weights.weights.h5        # Model weights
+│
+├── LICENSE
+└── README.md
+```
+
+---
+
+## 📊 Output
+
+- Model predicts one of **8 classes**
+- Output is a probability distribution
+- `argmax()` returns predicted class index  
+
+---
+
+## 🚀 Future Improvements
+
+- 🔁 Apply **Transfer Learning (ResNet, VGG16)**  
+- ⚙️ Hyperparameter tuning  
+- 🌐 Deploy using **Streamlit / Flask**  
+- 📊 Add accuracy & loss visualization  
+
+---
+
+## 👨‍💻 Author
+
+**Ilmaan Ahamed**  
+Software Engineering Undergraduate  
+SLTC Research University  
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
