@@ -1,0 +1,11 @@
+# Ignore dataset
+eth-80/
+
+# Ignore logs
+logs/
+
+# Ignore compressed files
+*.tar.gz
+
+# Ignore model weights
+*.h5
