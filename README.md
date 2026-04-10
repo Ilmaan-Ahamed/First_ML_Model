@@ -109,3 +109,95 @@ model.add(tf.keras.layers.Dense(8, activation='softmax'))
 ```
 
 ---
+
+
+## 🔄 Data Preprocessing
+
+```python
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+train_datagen = ImageDataGenerator(
+    rescale=1./255,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True
+)
+
+test_datagen = ImageDataGenerator(rescale=1./255)
+```
+
+---
+
+## 📥 Data Generators
+
+```python
+train_generator = train_datagen.flow_from_directory(
+    'eth-80/train_set',
+    target_size=(128,128),
+    batch_size=32,
+    class_mode='categorical'
+)
+
+validation_generator = test_datagen.flow_from_directory(
+    'eth-80/val_set',
+    target_size=(128,128),
+    batch_size=32,
+    class_mode='categorical'
+)
+```
+
+---
+
+## 📈 Model Training
+
+```python
+model.compile(
+    loss='categorical_crossentropy',
+    optimizer='rmsprop',
+    metrics=['accuracy']
+)
+
+model.fit(
+    train_generator,
+    steps_per_epoch=2952 // 32,
+    epochs=50,
+    validation_data=validation_generator,
+    validation_steps=328 // 32
+)
+```
+
+---
+
+## 📊 TensorBoard Visualization
+
+```bash
+tensorboard --logdir logs/fit
+```
+
+---
+
+## 💾 Save & Load Model
+
+```python
+model.save_weights('saved_weights.weights.h5')
+model.load_weights('saved_weights.weights.h5')
+```
+
+---
+
+## 🔮 Prediction
+
+```python
+import numpy as np
+from PIL import Image
+
+im = Image.open('eth-80/val_set/horse/horse10-066-117.png')
+img = np.array(im) / 255.
+img = img[np.newaxis, ...]
+
+prediction = model.predict(img)
+print(np.argmax(prediction))
+```
+
+---
+
