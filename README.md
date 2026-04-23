@@ -1,51 +1,48 @@
-## 📌 Project Overview
+# ETH-80 Image Classification
 
-This project implements a **Convolutional Neural Network (CNN)** using **TensorFlow & Keras** to classify images from the **ETH-80 dataset**.
+A clean and structured TensorFlow/Keras project for classifying images from the ETH-80 dataset.
 
-The project demonstrates a complete **Deep Learning pipeline**, including:
-- Dataset download & extraction  
-- Data preprocessing & augmentation  
-- CNN model building  
-- Training & validation  
-- TensorBoard visualization  
-- Model saving & prediction  
+## Project Overview
+This project implements a Convolutional Neural Network (CNN) using TensorFlow & Keras to classify images from the ETH-80 dataset.
 
----
+The project demonstrates a complete Deep Learning pipeline, including:
 
-## 📊 Dataset
+- Dataset download & extraction
+- Data preprocessing & augmentation
+- CNN model building
+- Training & validation
+- TensorBoard visualization
+- Model saving & prediction
 
-- **Dataset:** ETH-80 Image Dataset  
-- **Classes:** 8 categories (e.g., dog, horse, etc.)  
-- **Structure:**
+## Dataset
+
+**Dataset**: ETH-80 Image Dataset
+
+**Classes**: 8 categories (e.g., dog, horse, etc.)
+
+**Structure**:
 ```
 eth-80/
 ├── train_set/
 └── val_set/
 ```
 
----
+## Technologies Used
 
-## 🛠 Technologies Used
+- Python
+- TensorFlow / Keras
+- NumPy
+- PIL (Image Processing)
+- TensorBoard
 
-- Python  
-- TensorFlow / Keras  
-- NumPy  
-- PIL (Image Processing)  
-- TensorBoard  
-
----
-
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1️⃣ Install Dependencies
-```bash
+```powershell
 pip install tensorflow numpy pillow matplotlib tensorboard
 ```
 
----
-
-## 📥 Download & Extract Dataset
-
+### 2️⃣ Download & Extract Dataset
 ```python
 import urllib.request
 import tarfile
@@ -62,10 +59,7 @@ if not os.path.isdir('eth-80'):
         tar.extractall()
 ```
 
----
-
-## 🖼️ Verify Dataset
-
+### 3️⃣ Verify Dataset
 ```python
 from PIL import Image
 from IPython.display import display
@@ -74,20 +68,13 @@ im = Image.open('eth-80/train_set/dog/dog4/dog4-066-207.png')
 display(im)
 ```
 
----
+## Model Configuration
 
-## ⚡ Model Configuration
+- **Image Dimensions**: 128x128
+- **Epochs**: 50
+- **Batch Size**: 32
 
-```python
-img_width, img_height = 128, 128
-epochs = 50
-batch_size = 32
-```
-
----
-
-## 🧠 CNN Model Architecture
-
+## CNN Model Architecture
 ```python
 model = tf.keras.Sequential()
 
@@ -108,11 +95,7 @@ model.add(tf.keras.layers.Dropout(0.5))
 model.add(tf.keras.layers.Dense(8, activation='softmax'))
 ```
 
----
-
-
-## 🔄 Data Preprocessing
-
+## Data Preprocessing
 ```python
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
@@ -126,10 +109,7 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1./255)
 ```
 
----
-
-## 📥 Data Generators
-
+## Data Generators
 ```python
 train_generator = train_datagen.flow_from_directory(
     'eth-80/train_set',
@@ -146,10 +126,7 @@ validation_generator = test_datagen.flow_from_directory(
 )
 ```
 
----
-
-## 📈 Model Training
-
+## Model Training
 ```python
 model.compile(
     loss='categorical_crossentropy',
@@ -166,27 +143,18 @@ model.fit(
 )
 ```
 
----
-
-## 📊 TensorBoard Visualization
-
-```bash
+## TensorBoard Visualization
+```powershell
 tensorboard --logdir logs/fit
 ```
 
----
-
-## 💾 Save & Load Model
-
+## Save & Load Model
 ```python
 model.save_weights('saved_weights.weights.h5')
 model.load_weights('saved_weights.weights.h5')
 ```
 
----
-
-## 🔮 Prediction
-
+## Prediction
 ```python
 import numpy as np
 from PIL import Image
@@ -199,10 +167,7 @@ prediction = model.predict(img)
 print(np.argmax(prediction))
 ```
 
----
-
-## 📁 Project Structure
-
+## Project Structure
 ```
 Deep-Learning-CNN/
 │
@@ -220,33 +185,25 @@ Deep-Learning-CNN/
 └── README.md
 ```
 
----
+## Output
 
-## 📊 Output
-
-- Model predicts one of **8 classes**
+- Model predicts one of 8 classes
 - Output is a probability distribution
-- `argmax()` returns predicted class index  
+- `argmax()` returns predicted class index
 
----
+## Future Improvements
 
-## 🚀 Future Improvements
+- 🔁 Apply Transfer Learning (ResNet, VGG16)
+- ⚙️ Hyperparameter tuning
+- 🌐 Deploy using Streamlit / Flask
+- 📊 Add accuracy & loss visualization
 
-- 🔁 Apply **Transfer Learning (ResNet, VGG16)**  
-- ⚙️ Hyperparameter tuning  
-- 🌐 Deploy using **Streamlit / Flask**  
-- 📊 Add accuracy & loss visualization  
-
----
-
-## 👨‍💻 Author
+## Author
 
 **Ilmaan Ahamed**  
 Software Engineering Undergraduate  
-SLTC Research University  
+SLTC Research University
 
----
-
-## ⭐ Support
+## Support
 
 If you like this project, give it a ⭐ on GitHub!

@@ -4,8 +4,15 @@ eth-80/
 # Ignore logs
 logs/
 
+# Ignore saved models
+saved_model/
+
 # Ignore compressed files
 *.tar.gz
 
 # Ignore model weights
 *.h5
+
+# Ignore Python cache
+__pycache__/
+*.pyc
