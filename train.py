@@ -53,11 +53,14 @@ def get_datasets():
         seed=42,
     )
 
+    # Store class names before pipeline operations
+    class_names = train_ds.class_names
+
     AUTOTUNE = tf.data.AUTOTUNE
     train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
     val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
-    return train_ds, val_ds
+    return train_ds, val_ds, class_names
 
 
 def build_model(num_classes: int):
@@ -93,9 +96,9 @@ def build_model(num_classes: int):
 def main():
     download_and_extract_dataset()
 
-    train_ds, val_ds = get_datasets()
-    num_classes = len(train_ds.class_names)
-    print('Class names:', train_ds.class_names)
+    train_ds, val_ds, class_names = get_datasets()
+    num_classes = len(class_names)
+    print('Class names:', class_names)
 
     model = build_model(num_classes)
     model.summary()
